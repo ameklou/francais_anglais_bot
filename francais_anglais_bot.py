@@ -13,6 +13,7 @@ def reformatter_la_traduction(original):
 	la_traduction_formater = original.replace(u'/tofrench','')
 	la_traduction_formater = original.replace(u'/enchinois','')
 	la_traduction_formater = original.replace(u'/enhebreux','')
+	la_traduction_formater = original.replace(u'/enallemand','')
 	
 	if la_traduction_formater.replace(' ','') == '':
 		la_traduction_formater = u'Ajoutez moi du texte à traduire.'
@@ -57,14 +58,23 @@ def enhebreux(bot, update, args):
 	la_traduction = reformatter_la_traduction(traduction_original)
 	bot.sendMessage(chat_id=update.message.chat_id, text = la_traduction)
 
+def enallemand(bot, update, args):
+	global translate
+	message_tohe = ' '.join(args)
+	bot_traducteur = (translate.translate(message_tohe, 'nl'))
+	traduction_original = bot_traducteur[u'text'][0]
+	la_traduction = reformatter_la_traduction(traduction_original)
+	bot.sendMessage(chat_id=update.message.chat_id, text = la_traduction)
+
 def unknown(bot, update):
-	bot.sendMessage(chat_id=update.message.chat_id, text= u"Désolé je ne comprend pas les commandes.")
+	bot.sendMessage(chat_id=update.message.chat_id, text= u"Désolé je ne comprends pas cette commande.")
 
 
 dispatcher.addTelegramCommandHandler('start', start)
 dispatcher.addTelegramCommandHandler('tofrench', tofrench)
 dispatcher.addTelegramCommandHandler('enchinois', enchinois)
 dispatcher.addTelegramCommandHandler('enhebreux', enhebreux)
+dispatcher.addTelegramCommandHandler('enallemand', enallemand)
 
 dispatcher.addUnknownTelegramCommandHandler(unknown)
 dispatcher.addTelegramMessageHandler(traduire)
