@@ -18,7 +18,7 @@ def reformatter_la_traduction(original):
 	if la_traduction_formater.replace(' ','') == '':
 		la_traduction_formater = u'Ajoutez moi du texte à traduire.'
 	
-	la_traduction_formater = u'Traduction: '+la_traduction_formater 
+	#la_traduction_formater = u'Traduction: '+la_traduction_formater 
 	return la_traduction_formater
 
 def start(bot, update):
@@ -30,7 +30,7 @@ def traduire(bot, update):
 	bot_traducteur = (translate.translate(message_toen, 'en'))
 	traduction_original = bot_traducteur[u'text'][0]
 	la_traduction = reformatter_la_traduction(traduction_original)
-	bot.sendMessage(chat_id=update.message.chat_id, text = la_traduction)
+	bot.sendMessage(chat_id=update.message.chat_id, text = la_traduction, reply_to_message_id = update.message.message_id)
 
 def tofrench(bot, update, args):
 	global translate
@@ -38,7 +38,7 @@ def tofrench(bot, update, args):
 	bot_traducteur = (translate.translate(message_tofr, 'fr'))
 	traduction_original = bot_traducteur[u'text'][0]
 	la_traduction = reformatter_la_traduction(traduction_original)
-	bot.sendMessage(chat_id=update.message.chat_id, text = la_traduction)
+	bot.sendMessage(chat_id=update.message.chat_id, text = la_traduction, reply_to_message_id = update.message.message_id)
 
 
 def enchinois(bot, update, args):
@@ -47,7 +47,7 @@ def enchinois(bot, update, args):
 	bot_traducteur = (translate.translate(message_toch, 'zh'))
 	traduction_original = bot_traducteur[u'text'][0]
 	la_traduction = reformatter_la_traduction(traduction_original)
-	bot.sendMessage(chat_id=update.message.chat_id, text = la_traduction)
+	bot.sendMessage(chat_id=update.message.chat_id, text = la_traduction, reply_to_message_id = update.message.message_id)
 
 
 def enhebreux(bot, update, args):
@@ -56,7 +56,7 @@ def enhebreux(bot, update, args):
 	bot_traducteur = (translate.translate(message_tohe, 'he'))
 	traduction_original = bot_traducteur[u'text'][0]
 	la_traduction = reformatter_la_traduction(traduction_original)
-	bot.sendMessage(chat_id=update.message.chat_id, text = la_traduction)
+	bot.sendMessage(chat_id=update.message.chat_id, text = la_traduction, reply_to_message_id = update.message.message_id)
 
 def enallemand(bot, update, args):
 	global translate
@@ -64,7 +64,7 @@ def enallemand(bot, update, args):
 	bot_traducteur = (translate.translate(message_tohe, 'nl'))
 	traduction_original = bot_traducteur[u'text'][0]
 	la_traduction = reformatter_la_traduction(traduction_original)
-	bot.sendMessage(chat_id=update.message.chat_id, text = la_traduction)
+	bot.sendMessage(chat_id=update.message.chat_id, text = la_traduction, reply_to_message_id = update.message.message_id)
 
 def unknown(bot, update):
 	bot.sendMessage(chat_id=update.message.chat_id, text= u"Désolé je ne comprends pas cette commande.")
